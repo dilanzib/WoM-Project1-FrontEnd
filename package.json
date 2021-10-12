@@ -1,0 +1,19 @@
+{
+  "name": "electron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^15.1.2"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "electron-fetch": "^1.7.4"
+  }
+}
