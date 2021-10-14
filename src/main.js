@@ -18,30 +18,112 @@ const createWindow = () => {
 
 app.on('ready', createWindow)
 
-// const login = async () => {
-//     console.log("login till projekt 1")
+// TODO: Sätt jwt i localstorage?
+// localStorage.setItem("user_key", 
+jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTY2OTlkMzcwMmQyNzdlOGE1YmQzMGQiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjM0MTQ2OTIwLCJleHAiOjE2MzkzMzA5MjB9.nhgJEjjxQFRwXqnsu5O9h0jfTPclGL2OHP7QvDO5oCI";
 
-// }
+// TODO: LOGIN
+ipcMain.handle('login-handler', async (event, data) => {
+    console.log("\n\nLÄS HÄR:")
+    try{
+        // OBS. ÄNDRA URL
+        const D = {
+            email: "kraakan@krakmail.com",
+            password: "hejhej123"
+        }
 
-// INGEN LOGIN I DET HÄR SKEDET!
+        const response = await fetch("https://wom-project1.azurewebsites.net/users/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"},
+            body: JSON.stringify(D),
+            timeout: 5000
+        })
+        console.log(response)
+        login = await response.json()
+        console.log(login)
+        return login
+    } catch (error) {
+        return error.message
+    }
+})
+
 ipcMain.handle('getmycabins-handler', async (event, data) => {
     console.log("Get my cabins main!")
     try{
-            // OBS. ÄNDRA URL
-            const response = await fetch('http://127.0.0.1:5000/', {
+            const response = await fetch('https://shielded-shelf-90510.herokuapp.com/cabins', {
                 headers: {
-                    "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTU3NTFlYWQ3NWYxNzg5M2JjZWM0NzMiLCJlbWFpbCI6ImtyYWFrYW5Aa3Jha21haWwuY29tIiwiaWF0IjoxNjM0MDY4MjMwLCJleHAiOjE2MzY2NjAyMzB9.VpnFgaOfbcpkHVOYQbRDp6q3VCAWo8uZGn8htEsO_bU",
+                    "Authorization": jwt,
                     "Content-Type": "application/json"},
-                body: {
-                },
-                timeout: 2000
+                timeout: 5000
             })
         
-            login = await response.json()
-            return login
-        } catch (error) {
-            return error.message
-        }
+            cabins = await response.json()
+            return cabins
+    } catch (error) {
+        return error.message
+    }
+})
+
+ipcMain.handle('makeorder-handler', async (event, data) => {
+    console.log("Placing order!")
+    try{
+        // LÄGG TILL DATUM "order_date"
+        // console.log(data.order_date)
+            const response = await fetch('https://shielded-shelf-90510.herokuapp.com/orders', {
+                method: "POST",
+                headers: {
+                    "Authorization": jwt,
+                    "Content-Type": "application/json"},
+                body: JSON.stringify(data),
+                timeout: 5000
+            })
+        
+            order = await response.json()
+            console.log(order)
+            return order
+
+            // console.log(data.id)
+            // console.log(data.selection)
+
+
+    } catch (error) {
+        return error.message
+    }
+})
+
+ipcMain.handle('getmyorders-handler', async (event, data) => {
+    console.log("Get my orders main!")
+    try{
+            const response = await fetch('https://shielded-shelf-90510.herokuapp.com/orders', {
+                headers: {
+                    "Authorization": jwt,
+                    "Content-Type": "application/json"},
+                timeout: 5000
+            })
+        
+            orders = await response.json()
+            return orders
+    } catch (error) {
+        return error.message
+    }
+})
+
+ipcMain.handle('getmyservices-handler', async (event, data) => {
+    console.log("Get my services main!")
+    try{
+            const response = await fetch('https://shielded-shelf-90510.herokuapp.com/services', {
+                headers: {
+                    "Authorization": jwt,
+                    "Content-Type": "application/json"},
+                timeout: 5000
+            })
+        
+            services = await response.json()
+            return services
+    } catch (error) {
+        return error.message
+    }
 })
 
 ipcMain.handle('btn-handler', async (event, data) => {
