@@ -18,28 +18,11 @@ const createWindow = () => {
 
 app.on('ready', createWindow)
 
-// TODO: Sätt jwt i localstorage?
-// localStorage.setItem("user_key", 
-jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTY2OTlkMzcwMmQyNzdlOGE1YmQzMGQiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjM0MTQ2OTIwLCJleHAiOjE2MzkzMzA5MjB9.nhgJEjjxQFRwXqnsu5O9h0jfTPclGL2OHP7QvDO5oCI";
-
 // TODO: LOGIN
 ipcMain.handle('login-handler', async (event, data) => {
-    console.log("\n\nLÄS HÄR:")
     try{
-        // OBS. ÄNDRA URL
-        const D = {
-            email: "kraakan@krakmail.com",
-            password: "hejhej123"
-        }
 
-        const response = await fetch("https://wom-project1.azurewebsites.net/users/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"},
-            body: JSON.stringify(D),
-            timeout: 5000
-        })
-        console.log(response)
+        const response = await fetch("https://wom-project1.azurewebsites.net/users/login", data)
         login = await response.json()
         console.log(login)
         return login
@@ -49,14 +32,8 @@ ipcMain.handle('login-handler', async (event, data) => {
 })
 
 ipcMain.handle('getmycabins-handler', async (event, data) => {
-    console.log("Get my cabins main!")
     try{
-            const response = await fetch('https://shielded-shelf-90510.herokuapp.com/cabins', {
-                headers: {
-                    "Authorization": jwt,
-                    "Content-Type": "application/json"},
-                timeout: 5000
-            })
+            const response = await fetch('https://shielded-shelf-90510.herokuapp.com/cabins', data)
         
             cabins = await response.json()
             return cabins
@@ -68,24 +45,33 @@ ipcMain.handle('getmycabins-handler', async (event, data) => {
 ipcMain.handle('makeorder-handler', async (event, data) => {
     console.log("Placing order!")
     try{
-        // LÄGG TILL DATUM "order_date"
-        console.log(data.order_date)
-            const response = await fetch('https://shielded-shelf-90510.herokuapp.com/orders', {
-                method: "POST",
-                headers: {
-                    "Authorization": jwt,
-                    "Content-Type": "application/json"},
-                body: JSON.stringify(data),
-                timeout: 5000
-            })
-        
-            order = await response.json()
-            console.log(order)
-            return order
+        console.log(data)
+        const response = await fetch('https://shielded-shelf-90510.herokuapp.com/orders', data)
+    
+        order = await response.json()
+        console.log(order)
+        return order
 
-            // console.log(data.id)
-            // console.log(data.selection)
+    } catch (error) {
+        return error.message
+    }
+})
 
+ipcMain.handle('deleteorder-handler', async (event, data) => {
+    console.log("Deleting order!")
+    try{
+        console.log(data)
+
+        let request = {
+            method: 'DELETE',
+            timeout: 5000
+        }
+
+        const response = await fetch('https://shielded-shelf-90510.herokuapp.com/orders/' + data, request)
+    
+        order = await response.json()
+        // console.log(order)
+        return order
 
     } catch (error) {
         return error.message
@@ -93,14 +79,8 @@ ipcMain.handle('makeorder-handler', async (event, data) => {
 })
 
 ipcMain.handle('getmyorders-handler', async (event, data) => {
-    console.log("Get my orders main!")
     try{
-            const response = await fetch('https://shielded-shelf-90510.herokuapp.com/orders', {
-                headers: {
-                    "Authorization": jwt,
-                    "Content-Type": "application/json"},
-                timeout: 5000
-            })
+            const response = await fetch('https://shielded-shelf-90510.herokuapp.com/orders', data)
         
             orders = await response.json()
             return orders
@@ -110,11 +90,10 @@ ipcMain.handle('getmyorders-handler', async (event, data) => {
 })
 
 ipcMain.handle('getmyservices-handler', async (event, data) => {
-    console.log("Get my services main!")
     try{
             const response = await fetch('https://shielded-shelf-90510.herokuapp.com/services', {
                 headers: {
-                    "Authorization": jwt,
+                    "Authorization": data,
                     "Content-Type": "application/json"},
                 timeout: 5000
             })
@@ -124,10 +103,5 @@ ipcMain.handle('getmyservices-handler', async (event, data) => {
     } catch (error) {
         return error.message
     }
-})
-
-ipcMain.handle('btn-handler', async (event, data) => {
-    console.log("This is main!")
-    return "Return from main."
 })
 
