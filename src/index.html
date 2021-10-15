@@ -17,14 +17,12 @@
       padding: 5px 90px;
     }
 
-    .col-sm-4 {
-        background-color:#F8F8F8;
-    }
     ul, li{
         list-style-type: none;
     }
     a {
         cursor: pointer;
+        color: white;
     }
 </style>
 <body>
@@ -34,9 +32,9 @@
             <p id="notloggedin">Logga in för att kunna beställa tjänster till dina stugor</p>
 
         <div id="loggedin">
-            <a onclick="showCabins()">Stugor</a>
-            <a onclick="showOrders()">Beställningar</a>
-            <a onclick="logOut()">Logga ut</a>
+            <a onclick="showCabins()">Stugor </a>
+            <a onclick="showOrders()">Beställningar </a>
+            <a onclick="logOut()">Logga ut </a>
         </div>
         </div>  
         <div class="text-center" id="login">
@@ -48,8 +46,8 @@
         </div><br>
         <div class="row">
             <div class="col-sm-4" id="cabins"></div>
-            <div class="col-sm-4" id="services"></div> 
-            <div class="col-sm-4" id="orders"></div> 
+            <div class="col-sm-8" id="services"></div> 
+            <div class="col-sm-8" id="orders"></div> 
         </div>
     </div>
     <script src=".//renderer.js"></script>

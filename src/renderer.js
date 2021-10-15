@@ -125,10 +125,10 @@ orders = async () => {
         // och #order_${element.id} - "beställning" - (här)
         document.querySelector('#orders').innerHTML += `
         <ul id="order_${element.id}">
-        <div>Stug-id: ${element.cabin_id}</div>
+        <div><h5>Stug-id: ${element.cabin_id}</h5></div>
         <div>Servicetyp: ${element.services_id}</div>
         <div>datum: ${element.order_date}</div>
-        <button class="btn btn-danger"  id="delete${element.id}">Ta bort!</button>
+        <button class="btn btn-danger"  id="delete${element.id}">Ta bort!</button><br><br>
         </ul>`
     })
 
