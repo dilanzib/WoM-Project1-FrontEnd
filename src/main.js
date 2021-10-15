@@ -69,7 +69,7 @@ ipcMain.handle('makeorder-handler', async (event, data) => {
     console.log("Placing order!")
     try{
         // LÄGG TILL DATUM "order_date"
-        // console.log(data.order_date)
+        console.log(data.order_date)
             const response = await fetch('https://shielded-shelf-90510.herokuapp.com/orders', {
                 method: "POST",
                 headers: {

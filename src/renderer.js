@@ -95,7 +95,7 @@ orders = async () => {
     async () => {
     const login = await window.electron.login()
     console.log(login)
-    document.querySelector('#login').innerHTML += `<div>JWT: ${login}</div>`
+    // document.querySelector('#login').innerHTML += `<div>JWT: ${login}</div>`
 })()
 cabins()
-orders()
+// orders()
