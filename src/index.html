@@ -4,17 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">   
-    <title>Stugunderhållstjänsten</title>
+    <title>StugTjänst</title>
 </head>
 <style>
     .jumbotron {
       background-color: #f4511e; 
       color: #ffffff;
     }
-    </style>
+    
+    .row {
+      padding: 5px 90px;
+    }
+
+    .col-sm-4 {
+        background-color:#F8F8F8;
+    }
+</style>
 <body>
     
     <div class="jumbotron text-center">
@@ -25,11 +31,14 @@
         <input id="user" type="text" placeholder="E-post"><br><br>
         <input id="password" type="password" placeholder="Password"><br><br>
         <button class="btn" id="loginBtn">Logga in</button>
+    </div><br>
+    <div class="row">
+        <div class="col-sm-4" id="cabins"></div>
+        <div class="col-sm-4" id="services"></div> 
+        <div class="col-sm-4" id="orders"></div> 
+        <button id="btn">Click Me!</button>
     </div>
-    <div class="col-sm-4" id="cabins"></div>
-    <div class="col-sm-4" id="services"></div>
-    <div class="col-sm-4" id="orders"></div>
-    <button id="btn">Click Me!</button>
+
     <script src=".//renderer.js"></script>
 </body>
 </html>

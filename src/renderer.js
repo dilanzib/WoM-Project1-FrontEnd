@@ -48,18 +48,18 @@ cabins = async () => {
     
     cabins.forEach(element => {
         let sauna
-        if (element.sauna) sauna = "med bastu"
-        else sauna = "utan bastu"
+        if (element.sauna) sauna = "Med bastu"
+        else sauna = "Utan bastu"
         let beach;
-        if (element.sauna) beach = "med strand"
-        else beach = "utan strand"
+        if (element.sauna) beach = "Med strand"
+        else beach = "Utan strand"
 
         document.querySelector('#cabins').innerHTML += `
         <div id="${element._id}">
-        <div>${element.address}</div>
-        <a href="mailto: ${element.owner}" >${element.owner}</a>
-        <div>pris: ${element.price}</div>
-        <div>storlek: ${element.size}</div>
+        <div><h4>${element.address}</h4></div>
+        <div>Ägare: <a href="mailto: ${element.owner}" >${element.owner}</a></div>
+        <div>Pris: ${element.price}</div>
+        <div>Storlek: ${element.size}</div>
         <div>` + sauna + `</div>
         <div>` + beach + `</div>
 
@@ -67,9 +67,9 @@ cabins = async () => {
         `
         +services+
         `
-        </select>
-        <input id="date${element._id}" type="date" required pattern="\\d{4}-\\d{2}-\\d{2}">
-        <button id="order${element._id}">Beställ!</button>
+        </select><br>
+        <input id="date${element._id}" type="date" required pattern="\\d{4}-\\d{2}-\\d{2}"><br><br>
+        <button class="btn btn-danger" id="order${element._id}">Beställ!</button><br><br>
         </div>`
         makeOrderBtn(element._id)
         // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date
