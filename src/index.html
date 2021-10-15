@@ -4,20 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>stugunderhållstjänsten</title>
+    <link rel="stylesheet" href="./style.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">   
+    <title>Stugunderhållstjänsten</title>
 </head>
+<style>
+    .jumbotron {
+      background-color: #f4511e; /* Orange */
+      color: #ffffff;
+    }
+    </style>
 <body>
-    <h2>Välkommen till stugunderhållstjänsten!</h2>
-    <div id="login">
-        <span>användarnamn:</span>
-        <input id="user" type="text">
-        <span>lösenord:</span>
-        <input id="password" type="password">
-        <button id="loginBtn">Logga in!</button>
+    
+    <div class="jumbotron text-center">
+    <h2> StugunderhållssTjänst</h2>
+    <p>Logga in för att kunna beställa tjänster till dina stugor</p>
+    </div>  
+    <div class="text-center" id="login">
+        <input id="user" type="text" placeholder="E-post"><br><br>
+        <input id="password" type="password" placeholder="Password"><br><br>
+        <button class="btn" id="loginBtn">Logga in</button>
     </div>
-    <div id="cabins"></div>
-    <div id="services"></div>
-    <div id="orders"></div>
+    <div class="col-sm-4" id="cabins"></div>
+    <div class="col-sm-4" id="services"></div>
+    <div class="col-sm-4" id="orders"></div>
     <button id="btn">Click Me!</button>
     <script src=".//renderer.js"></script>
 </body>
