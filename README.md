@@ -1,7 +1,7 @@
-# WoM-Project1-FrontEnd
-Desktop app by Electron.js
+# University course | Graphic app
+Created a front-end application for the cottage maintenance service in Electron.js
 
-OBS. att ingenting fungerar om man inte konstruerar miljön i node
+NOTE. that nothing works if you do not construct the environment in node 
 +-- dotenv@10.0.0
 +-- electron-fetch@1.7.4
-`-- electron@15.1.2
++-- electron@15.1.2
